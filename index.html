@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connec8 — Digital Systems Agency</title>
+  <meta name="description" content="Connec8 builds websites, admin panels, billing systems, and automation for businesses that need to operate with clarity."/>
+  <link rel="icon" type="image/png" href="assets/logo/connec8-logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <img src="assets/logo/connec8-logo.png" alt="Connec8" class="loader__logo" width="88" height="88"/>
+    <div class="loader__track"><div class="loader__fill" id="loaderFill"></div></div>
+    <span class="loader__pct" id="loaderPct">0%</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      <img src="assets/logo/connec8-logo.png" alt="" width="32" height="32" class="nav__logo-img"/>
+      <span>Connec8</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav__cta">Start a project</a>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mob-nav" id="mobNav">
+  <div class="mob-nav__inner">
+    <a href="#work"     class="mob-link">Work</a>
+    <a href="#services" class="mob-link">Services</a>
+    <a href="#about"    class="mob-link">About</a>
+    <a href="#contact"  class="mob-link">Contact</a>
+    <a href="#contact"  class="mob-cta">Start a project</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__orb hero__orb--a"></div>
+    <div class="hero__orb hero__orb--b"></div>
+  </div>
+  <div class="hero__content">
+    <p class="hero__eyebrow"><span class="ey-line"></span><span>Digital Systems Agency</span></p>
+    <h1 class="hero__h1">
+      <span class="h1-line"><span class="h1-mask">We build digital systems</span></span>
+      <span class="h1-line h1-serif"><span class="h1-mask">that help businesses</span></span>
+      <span class="h1-line"><span class="h1-mask">operate, scale, and sell better.</span></span>
+    </h1>
+    <p class="hero__sub">Websites. Automation. Invoicing. Admin panels.<br/>Built with strategy — not templates.</p>
+    <div class="hero__btns">
+      <a href="#work"    class="btn-ghost">View Work</a>
+      <a href="#contact" class="btn-solid">Book a Call</a>
+    </div>
+  </div>
+  <div class="hero__foot" aria-hidden="true">
+    <div class="hero__scroll"><div class="sc-track"><div class="sc-thumb"></div></div><span>Scroll</span></div>
+    <div class="hero__nums">
+      <div class="h-num"><b data-count="25" class="counter">0</b><span>+ Projects</span></div>
+      <div class="h-sep"></div>
+      <div class="h-num"><b>4</b><span>Services</span></div>
+      <div class="h-sep"></div>
+      <div class="h-num"><b>100%</b><span>Custom</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+
+    <span>Websites</span>
+    <span class="tdot">·</span>
+    <span>Admin Panels</span>
+    <span class="tdot">·</span>
+    <span>Billing Systems</span>
+    <span class="tdot">·</span>
+    <span>Automation</span>
+    <span class="tdot">·</span>
+    <span>Digital Infrastructure</span>
+    <span class="tdot">·</span>
+    <span>Business Systems</span>
+    <span class="tdot">·</span>
+
+    <span>Websites</span>
+    <span class="tdot">·</span>
+    <span>Admin Panels</span>
+    <span class="tdot">·</span>
+    <span>Billing Systems</span>
+    <span class="tdot">·</span>
+    <span>Automation</span>
+    <span class="tdot">·</span>
+    <span>Digital Infrastructure</span>
+    <span class="tdot">·</span>
+    <span>Business Systems</span>
+    <span class="tdot">·</span>
+
+    <span>Websites</span>
+    <span class="tdot">·</span>
+    <span>Admin Panels</span>
+    <span class="tdot">·</span>
+    <span>Billing Systems</span>
+    <span class="tdot">·</span>
+    <span>Automation</span>
+    <span class="tdot">·</span>
+    <span>Digital Infrastructure</span>
+    <span class="tdot">·</span>
+    <span>Business Systems</span>
+    <span class="tdot">·</span>
+
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work sec" id="work">
+  <div class="wrap">
+    <div class="work__top">
+      <div><p class="eyebrow">Selected Work</p><h2 class="sec-title">Built for real <em>business problems.</em></h2></div>
+      <div class="work__filters" role="group">
+        <button class="fil active" data-f="all">All</button>
+        <button class="fil" data-f="Website">Website</button>
+        <button class="fil" data-f="Admin Panel">Admin</button>
+        <button class="fil" data-f="Billing System">Billing</button>
+        <button class="fil" data-f="Automation">Automation</button>
+      </div>
+    </div>
+    <div class="work__grid" id="workGrid"><div class="grid-loading"><div class="spinner"></div></div></div>
+  </div>
+</section>
+
+<!-- CASE STUDY -->
+<section class="case sec" id="about">
+  <div class="wrap">
+    <div class="case__box">
+      <div class="case__left">
+        <p class="eyebrow">Case Study</p>
+        <h2 class="sec-title">From chaos to <em>complete clarity.</em></h2>
+        <p class="case__context">A service business billing through WhatsApp and spreadsheets. Payments missed. Data lost. No visibility.</p>
+      </div>
+      <div class="case__steps">
+        <div class="case__step"><div class="cs-n">01 — Problem</div><h4>No financial system</h4><p>Every invoice was a manual WhatsApp message. Three hours every Friday — just to understand what was owed.</p></div>
+        <div class="case__step"><div class="cs-n">02 — System Built</div><h4>Custom billing platform</h4><p>Automated invoicing, client portal, real-time payment tracking, and a management dashboard — fully integrated.</p></div>
+        <div class="case__step"><div class="cs-n">03 — Result</div><h4>Zero missed payments</h4><p>Eight hours saved weekly. Complete clarity. <em>"I finally feel in control of my own business."</em></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services sec" id="services">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">What we build</p><h2 class="sec-title">Four pillars of <em>operational clarity.</em></h2></div>
+    <div class="svc-grid">
+      <article class="svc-card"><div class="svc-n">01</div><div class="svc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 9h18M9 21V9"/></svg></div><h3>Websites</h3><p>Professional websites that present your brand with authority and convert visitors into clients.</p><ul><li>Landing pages &amp; business sites</li><li>Conversion-focused design</li><li>SEO-ready structure</li></ul></article>
+      <article class="svc-card"><div class="svc-n">02</div><div class="svc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="20" height="14" rx="2.5"/><path d="M8 21h8M12 17v4"/><path d="M7 7.5h3M7 11h6"/></svg></div><h3>Admin Panels</h3><p>Custom dashboards that centralize your data and give your team complete visibility.</p><ul><li>Custom data dashboards</li><li>Role-based access</li><li>Real-time reporting</li></ul></article>
+      <article class="svc-card"><div class="svc-n">03</div><div class="svc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4"/></svg></div><h3>Billing Systems</h3><p>Automated invoicing workflows that eliminate manual work and give complete financial clarity.</p><ul><li>Automated invoicing</li><li>Payment tracking</li><li>Client portals</li></ul></article>
+      <article class="svc-card"><div class="svc-n">04</div><div class="svc-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><h3>Automation</h3><p>Connect your tools and build workflows that run without you — from onboarding to reporting.</p><ul><li>Workflow automation</li><li>Tool integrations</li><li>Process optimization</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story sec">
+  <div class="wrap">
+    <div class="story__grid">
+      <div class="story__left">
+        <p class="eyebrow">The Reality</p>
+        <div class="story__lines">
+          <p class="sline">Most businesses don't have a system.</p>
+          <p class="sline">Everything runs manually.</p>
+          <p class="sline">Data is scattered.</p>
+          <p class="sline">Time is wasted every day.</p>
+        </div>
+      </div>
+      <div class="story__right">
+        <p>We build <strong>structured systems</strong> that give your business the operational foundation it needs — so you can stop managing chaos and start growing with confidence.</p>
+        <p>We're not a marketing agency. We're not a design studio. We build the digital infrastructure that makes businesses run properly.</p>
+        <div class="story__chips"><span>System builders</span><span>Digital infrastructure</span><span>Operational clarity</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi sec">
+  <div class="wrap">
+    <div class="sec-head"><p class="eyebrow">What clients say</p><h2 class="sec-title">Outcomes that <em>speak for themselves.</em></h2></div>
+    <div class="testi__grid" id="testiGrid"><div class="grid-loading"><div class="spinner"></div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sec">
+  <div class="wrap">
+    <div class="faq__inner">
+      <div class="faq__left"><p class="eyebrow">FAQ</p><h2 class="sec-title">Common <em>questions.</em></h2><p class="faq__note">Still have questions? <a href="#contact">Send us a message.</a></p></div>
+      <div class="faq__list">
+        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What exactly do you build?</span><span class="faq-ico">+</span></button><div class="faq-a"><p>Websites, admin panels, billing systems, and automation workflows. Everything is custom-engineered — no templates, no off-the-shelf tools where they don't fit.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How long does a project take?</span><span class="faq-ico">+</span></button><div class="faq-a"><p>A website typically takes 1–2 weeks. Admin panels and billing systems range from 3–6 weeks. We give you a precise timeline before starting and hold to it.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do you provide ongoing support?</span><span class="faq-ico">+</span></button><div class="faq-a"><p>Yes. Every project includes post-launch support. We also offer maintenance retainers for businesses that need continuous development.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do we start working together?</span><span class="faq-ico">+</span></button><div class="faq-a"><p>Send us a message via WhatsApp or the contact form. We'll schedule a short discovery call and deliver a proposal within 24 hours.</p></div></div>
+        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do you work with businesses outside India?</span><span class="faq-ico">+</span></button><div class="faq-a"><p>Yes. We work remotely with businesses across India, the Middle East, and Southeast Asia.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec sec">
+  <div class="wrap">
+    <div class="cta-block">
+      <div class="cta-block__bg" aria-hidden="true"></div>
+      <div class="cta-block__body">
+        <p class="eyebrow">Ready to build?</p>
+        <h2>Ready to build systems<br/>for your business?</h2>
+        <p>Let's simplify your operations and create infrastructure that actually works.</p>
+        <div class="cta-btns">
+          <a href="#contact" class="btn-solid">Start a project</a>
+          <a href="https://wa.me/918668690490" target="_blank" rel="noopener" class="btn-ghost">WhatsApp us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact sec" id="contact">
+  <div class="wrap">
+    <div class="contact__grid">
+      <div class="contact__left">
+        <p class="eyebrow">Let's talk</p>
+        <h2 class="sec-title">Let's build <em>something real.</em></h2>
+        <p class="contact__intro">We respond quickly. WhatsApp is the fastest way to reach us.</p>
+        <div class="contact__chs">
+          <a href="https://wa.me/918668690490" target="_blank" rel="noopener" class="ch">
+            <div class="ch__ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+            <div class="ch__text"><span>WhatsApp</span><span>Usually replies within 2 hrs</span></div>
+            <span class="ch__arr">↗</span>
+          </a>
+          <a href="mailto:connec8now@gmail.com" class="ch">
+            <div class="ch__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <div class="ch__text"><span>Email</span><span>connec8now@gmail.com</span></div>
+            <span class="ch__arr">↗</span>
+          </a>
+        </div>
+      </div>
+      <form class="contact__form" id="contactForm" novalidate>
+        <div class="frow">
+          <div class="field"><label for="fn">Your name</label><input type="text" id="fn" name="name" placeholder="Rahul Mehta" required/></div>
+          <div class="field"><label for="fb">Business</label><input type="text" id="fb" name="business" placeholder="Company name"/></div>
+        </div>
+        <div class="field"><label for="fs">What do you need?</label><select id="fs" name="service"><option value="" disabled selected>Select a service</option><option>Website</option><option>Admin Panel</option><option>Billing System</option><option>Automation</option><option>Not sure — let's talk</option></select></div>
+        <div class="field"><label for="fm">Tell us about your situation</label><textarea id="fm" name="message" rows="5" placeholder="Describe what you want to improve..."></textarea></div>
+        <button type="submit" class="btn-solid form-btn">Send message</button>
+        <p class="form-note">We'll get back to you within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand"><img src="assets/logo/connec8-logo.png" alt="Connec8" width="40" height="40" class="footer__logo"/><p>Systems that run your business.</p></div>
+      <div class="footer__nav">
+        <div class="fcol"><p class="fch">Services</p><a href="#services">Websites</a><a href="#services">Admin Panels</a><a href="#services">Billing Systems</a><a href="#services">Automation</a></div>
+        <div class="fcol"><p class="fch">Company</p><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div>
+        <div class="fcol"><p class="fch">Contact</p><a href="https://wa.me/918668690490" target="_blank">WhatsApp</a><a href="mailto:connec8now@gmail.com">Email</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2024 Connec8. All rights reserved.</span><span>Built by Connec8</span></div>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL — fullscreen lightbox, no crop, proper scaling -->
+<div class="pmodal" id="pmodal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="pmodal__bd" id="pmodalBd"></div>
+  <div class="pmodal__wrap">
+    <button class="pmodal__close" id="pmodalClose" aria-label="Close modal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="pmodal__scroll">
+      <div class="pmodal__body" id="pmodalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

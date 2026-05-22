@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connec8 — Admin</title>
+  <meta name="robots" content="noindex,nofollow"/>
+  <link rel="icon" type="image/png" href="assets/logo/connec8-logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+
+<!-- ── LOGIN ─────────────────────────────────────────────── -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-card">
+    <img src="assets/logo/connec8-logo.png" alt="Connec8" class="login-logo" width="64" height="64"/>
+    <p class="login-brand">Connec8</p>
+    <p class="login-sub">Admin Panel</p>
+
+    <div class="login-tabs">
+      <button class="ltab active" data-tab="pw">Password</button>
+    </div>
+
+    <form id="pwForm" novalidate>
+      <div class="lf"><label for="lpass">Password</label>
+        <input type="password" id="lpass" placeholder="Admin password" autocomplete="current-password" required/></div>
+      <button type="submit" class="login-btn">Sign in</button>
+      <p class="login-err" id="pwErr" aria-live="polite"></p>
+    </form>
+
+    </div>
+    </div>
+
+<!-- ── SHELL ─────────────────────────────────────────────── -->
+<div class="shell" id="shell" hidden>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-head">
+      <img src="assets/logo/connec8-logo.png" alt="" width="26" height="26" style="object-fit:contain"/>
+      <span class="sb-name">Connec8</span>
+      <span class="sb-badge">Admin</span>
+    </div>
+    <nav class="sb-nav">
+      <button class="sb-link active" data-p="dashboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </button>
+      <button class="sb-link" data-p="projects">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M6 20V10M12 20V4M18 20v-6"/></svg>
+        Projects
+      </button>
+      <button class="sb-link" data-p="testi">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Testimonials
+      </button>
+      <button class="sb-link" data-p="leads">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Leads
+      </button>
+    </nav>
+    <div class="sb-foot">
+      <a href="index.html" target="_blank" class="sb-action">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+        View site
+      </a>
+      <button class="sb-action danger" id="logoutBtn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <button class="topbar-burger" id="sbToggle"><span></span><span></span><span></span></button>
+      <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      <div class="topbar-right">
+        <span class="mode-pill" id="modePill">Demo</span>
+        <span class="topbar-user">Admin</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="panel active" id="panel-dashboard">
+      <div class="panel-head"><div><h1>Dashboard</h1><p>Live overview of content and leads.</p></div></div>
+      <div class="stats-row">
+        <div class="stat-card"><b class="stat-n" id="sProj">—</b><span class="stat-l">Projects</span></div>
+        <div class="stat-card"><b class="stat-n" id="sFeat">—</b><span class="stat-l">Featured</span></div>
+        <div class="stat-card"><b class="stat-n" id="sTesti">—</b><span class="stat-l">Testimonials</span></div>
+        <div class="stat-card"><b class="stat-n" id="sLeads">—</b><span class="stat-l">Leads</span></div>
+      </div>
+      <div class="db-card"><div class="db-card-head"><h3>Recent projects</h3><button class="txt-btn" data-p="projects">View all</button></div><div id="dashProj"></div></div>
+      <div class="db-card" style="margin-top:16px"><div class="db-card-head"><h3>Recent leads</h3><button class="txt-btn" data-p="leads">View all</button></div><div id="dashLeads"></div></div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="panel" id="panel-projects">
+      <div class="panel-head">
+        <div><h1>Projects</h1><p>Changes sync to the website immediately.</p></div>
+        <button class="btn-add" id="openProjModal">+ Add project</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Order</th><th>Title</th><th>Category</th><th>Type</th><th>Impact</th><th>Featured</th><th>Actions</th></tr></thead>
+          <tbody id="projTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="panel" id="panel-testi">
+      <div class="panel-head">
+        <div><h1>Testimonials</h1><p>Client quotes shown on the website.</p></div>
+        <button class="btn-add" id="openTestiModal">+ Add testimonial</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Role / Company</th><th>Metric</th><th>Preview</th><th>Actions</th></tr></thead>
+          <tbody id="testiBtbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section class="panel" id="panel-leads">
+      <div class="panel-head">
+        <div><h1>Leads</h1><p>Contact form submissions.</p></div>
+        <button class="txt-btn danger-txt" id="clearLeads">Clear all</button>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Business</th><th>Service</th><th>Message</th><th>Date</th></tr></thead>
+          <tbody id="leadsTbody"></tbody>
+        </table>
+      </div>
+      <p class="empty-note" id="leadsEmpty" hidden>No leads yet. Contact form submissions appear here.</p>
+    </section>
+  </main>
+</div>
+
+<!-- ── PROJECT MODAL ─────────────────────────────────────── -->
+<div class="modal-wrap" id="projModal" hidden>
+  <div class="modal-bg" data-close="projModal"></div>
+  <div class="modal modal-lg">
+    <div class="modal-head"><h2 id="pmTitle">Add project</h2><button class="modal-x" data-close="projModal">×</button></div>
+    <form id="projForm" novalidate>
+      <input type="hidden" id="pId"/>
+      <div class="modal-body">
+
+        <!-- Basic info -->
+        <div class="mrow">
+          <div class="mf mf2"><label>Title *</label><input type="text" id="pTitle" required placeholder="Project name"/></div>
+          <div class="mf"><label>Category *</label>
+            <select id="pCat" required>
+              <option value="" disabled selected>Select</option>
+              <option>Website</option><option>Admin Panel</option>
+              <option>Billing System</option><option>Automation</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Display type toggle -->
+        <div class="mrow">
+          <div class="mf mf-full">
+            <label>Display type</label>
+            <div class="type-toggle" id="typeToggle">
+              <button type="button" class="tt-btn active" data-type="website">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                Website / Desktop
+              </button>
+              <button type="button" class="tt-btn" data-type="app">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+                Mobile App
+              </button>
+            </div>
+            <input type="hidden" id="pType" value="website"/>
+          </div>
+        </div>
+
+        <div class="mrow">
+          <div class="mf"><label>Impact metric</label><input type="text" id="pImpact" placeholder="8+ hrs/week saved"/></div>
+          <div class="mf"><label>Year</label><input type="text" id="pYear" placeholder="2024"/></div>
+          <div class="mf"><label>Sort order</label><input type="number" id="pOrder" placeholder="1" min="1"/></div>
+          <div class="mf mf-check"><label><input type="checkbox" id="pFeatured"/> Featured</label></div>
+        </div>
+
+        <!-- Thumbnail upload -->
+        <div class="upload-zone" id="thumbZone">
+          <div class="upload-zone__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <p class="upload-zone__label">Thumbnail image</p>
+          <p class="upload-zone__hint">Drag &amp; drop or click to upload · PNG, JPG, WEBP</p>
+          <input type="file" id="thumbFile" accept="image/*" hidden/>
+          <div class="upload-zone__url">
+            <input type="text" id="pThumb" placeholder="Or paste image URL directly"/>
+          </div>
+          <div class="upload-prog" id="thumbProg" hidden>
+            <div class="upload-bar"><div class="upload-fill" id="thumbBar"></div></div>
+            <span id="thumbPct">0%</span>
+          </div>
+          <img id="thumbPreview" class="upload-preview" hidden alt="Thumbnail preview"/>
+        </div>
+
+        <!-- Video upload -->
+        <div class="upload-zone" id="videoZone">
+          <div class="upload-zone__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <p class="upload-zone__label">Preview video</p>
+          <p class="upload-zone__hint">Drag &amp; drop or click · MP4 or MOV (MacBook screen recordings supported) · auto-optimized</p>
+          <input type="file" id="videoFile" accept="video/mp4,video/quicktime,video/mov,.mov,.mp4" hidden/>
+          <div class="upload-zone__url">
+            <input type="text" id="pVideo" placeholder="Or paste video URL directly"/>
+          </div>
+          <div class="upload-prog" id="videoProg" hidden>
+            <div class="upload-bar"><div class="upload-fill" id="videoBar"></div></div>
+            <span id="videoPct">0%</span>
+          </div>
+          <video id="videoPreview" class="upload-preview" muted loop playsinline hidden></video>
+          <p class="upload-status" id="videoStatus"></p>
+        </div>
+
+        <div class="mrow">
+          <div class="mf mf-full"><label>Live URL <span class="hint">(optional)</span></label><input type="url" id="pLive" placeholder="https://"/></div>
+        </div>
+        <div class="mrow">
+          <div class="mf mf2"><label>Tags <span class="hint">(comma separated)</span></label><input type="text" id="pTags" placeholder="Invoicing, Automation"/></div>
+          <div class="mf mf2"><label>Technologies</label><input type="text" id="pTech" placeholder="JavaScript, Node.js"/></div>
+        </div>
+        <div class="mrow">
+          <div class="mf mf-full"><label>Description</label><textarea id="pDesc" rows="2" placeholder="Short project overview..."></textarea></div>
+        </div>
+        <div class="mrow">
+          <div class="mf"><label>Problem</label><textarea id="pProblem" rows="2" placeholder="What was the client's problem?"></textarea></div>
+          <div class="mf"><label>Solution</label><textarea id="pSolution" rows="2" placeholder="What did you build?"></textarea></div>
+          <div class="mf"><label>Result</label><textarea id="pResult" rows="2" placeholder="Business outcome?"></textarea></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn-cancel" data-close="projModal">Cancel</button>
+        <button type="submit" class="btn-save" id="projSaveBtn">Save project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── TESTIMONIAL MODAL ──────────────────────────────────── -->
+<div class="modal-wrap" id="testiModal" hidden>
+  <div class="modal-bg" data-close="testiModal"></div>
+  <div class="modal">
+    <div class="modal-head"><h2 id="tmTitle">Add testimonial</h2><button class="modal-x" data-close="testiModal">×</button></div>
+    <form id="testiForm" novalidate>
+      <input type="hidden" id="tId"/>
+      <div class="modal-body">
+        <div class="mrow">
+          <div class="mf"><label>Name *</label><input type="text" id="tName" required placeholder="Rahul Mehta"/></div>
+          <div class="mf"><label>Role *</label><input type="text" id="tRole" required placeholder="Founder"/></div>
+          <div class="mf"><label>Company</label><input type="text" id="tCompany" placeholder="NovaPay"/></div>
+        </div>
+        <div class="mrow">
+          <div class="mf"><label>Initials</label><input type="text" id="tAvatar" placeholder="RM" maxlength="3"/></div>
+          <div class="mf mf2"><label>Key metric</label><input type="text" id="tMetric" placeholder="8 hrs saved weekly"/></div>
+        </div>
+        <div class="mrow">
+          <div class="mf mf-full"><label>Testimonial *</label><textarea id="tText" rows="4" required placeholder="Client quote..."></textarea></div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn-cancel" data-close="testiModal">Cancel</button>
+        <button type="submit" class="btn-save" id="testiSaveBtn">Save testimonial</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>
