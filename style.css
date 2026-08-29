@@ -1,0 +1,3 @@
+
+/* LCP Performance Fix */
+p.hero__sub, .hero__sub { will-change: transform, opacity; transform: translateZ(0); content-visibility: auto; }
