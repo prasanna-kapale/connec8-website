@@ -61,19 +61,33 @@ function heroReveal() {
   const G = typeof gsap !== 'undefined' ? gsap : null;
   if (!G) { fallbackHeroReveal(); return; }
 
+  G.set('.hero__eyebrow, .hero__sub, .hero__btns, .hero__foot', {
+    opacity: 0,
+    y: 40,
+    rotate: 2
+  });
+
+  G.set('.h1-mask', {
+    opacity: 0,
+    y: 80,
+    rotate: 2
+  });
+
   const tl = G.timeline({ defaults: { ease: 'power4.out' } });
 
-  tl.to('.hero__eyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0)
-    .to('.h1-mask',        { y: '0%', duration: 0.95, stagger: 0.1 }, 0.15)
-    .to('.hero__sub',      { opacity: 1, y: 0, duration: 0.7 }, 0.5)
-    .to('.hero__btns',     { opacity: 1, y: 0, duration: 0.6 }, 0.65)
-    .to('.hero__foot',     { opacity: 1, duration: 0.6 }, 0.8);
+  tl.to('.hero__eyebrow', { opacity: 1, y: 0, rotate: 0, duration: 1.2 }, 0)
+    .to('.h1-mask',      { opacity: 1, y: 0, rotate: 0, duration: 1.2, stagger: 0.08 }, 0.15)
+    .to('.hero__sub',    { opacity: 1, y: 0, rotate: 0, duration: 1.2 }, 0.45)
+    .to('.hero__btns',   { opacity: 1, y: 0, rotate: 0, duration: 1.2 }, 0.6)
+    .to('.hero__foot',   { opacity: 1, y: 0, rotate: 0, duration: 1.2 }, 0.8);
 
-  // Count-up
   document.querySelectorAll('.counter').forEach(el => {
     const target = parseInt(el.dataset.count || 0);
     G.to({ val: 0 }, {
-      val: target, duration: 1.4, delay: 1.0, ease: 'power2.out',
+      val: target,
+      duration: 1.4,
+      delay: 1.0,
+      ease: 'power2.out',
       onUpdate() { el.textContent = Math.floor(this.targets()[0].val); }
     });
   });
@@ -95,11 +109,14 @@ function fallbackHeroReveal() {
    ═══════════════════════════════════════════════════════════ */
 function initLenis() {
   if (typeof Lenis === 'undefined') return;
+
   lenis = new Lenis({
     duration: 1.15,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothTouch: false,
+    wheelMultiplier: 1,
   });
+
   const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
   requestAnimationFrame(raf);
 
@@ -122,68 +139,74 @@ function initAnimations() {
 
   G.registerPlugin(ST);
 
+  G.to('.h1-serif', {
+    backgroundPosition: '150% center',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
   const rOpts = { start: 'top 88%', once: true };
 
-  // Eyebrows
   document.querySelectorAll('.eyebrow').forEach(el => {
-    G.fromTo(el, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+    G.fromTo(el, { opacity: 0, y: 12, rotate: 2 }, { opacity: 1, y: 0, rotate: 0, duration: 0.7, ease: 'power3.out',
       scrollTrigger: { trigger: el, ...rOpts } });
   });
 
-  // Section titles — word split reveal
   document.querySelectorAll('.sec-title').forEach(el => {
-    // Preserve inner HTML (em tags etc) — split by word spans
-    const raw   = el.innerHTML;
+    const raw = el.innerHTML;
     const words = raw.split(/(\s+)/);
     el.innerHTML = words.map(w => w.trim()
-      ? `<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="_wr" style="display:inline-block;transform:translateY(110%)">${w}</span></span>`
+      ? `<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="_wr" style="display:inline-block;transform:translateY(110%);opacity:0">${w}</span></span>`
       : w
     ).join('');
 
     G.to(el.querySelectorAll('._wr'), {
-      y: '0%', duration: 0.85, stagger: 0.05, ease: 'power4.out',
+      y: '0%',
+      opacity: 1,
+      duration: 0.85,
+      stagger: 0.05,
+      ease: 'power4.out',
       scrollTrigger: { trigger: el, ...rOpts }
     });
   });
 
-  // Service cards
-  G.utils.toArray('.svc-card').forEach((c, i) => {
-    G.fromTo(c, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, delay: i * 0.08, ease: 'power3.out',
-      scrollTrigger: { trigger: c, ...rOpts } });
+  G.utils.toArray('.svc-card, .tcard, .wcard').forEach((c, i) => {
+    G.fromTo(c, { opacity: 0, y: 60, rotateX: 4 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.85, delay: i * 0.06, ease: 'power4.out',
+      scrollTrigger: { trigger: c, start: 'top 90%', once: true } });
   });
 
-  // Case study steps
   G.utils.toArray('.case__step').forEach((c, i) => {
-    G.fromTo(c, { opacity: 0, x: 18 }, { opacity: 1, x: 0, duration: 0.65, delay: i * 0.1, ease: 'power3.out',
+    G.fromTo(c, { opacity: 0, x: 18, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.7, delay: i * 0.1, ease: 'power3.out',
       scrollTrigger: { trigger: '.case__steps', ...rOpts } });
   });
 
-  // Story lines light-up on scroll
   const stLines = document.querySelectorAll('.sline');
   if (stLines.length) {
     ST.create({ trigger: '.story__lines', start: 'top 80%', once: true,
       onEnter: () => stLines.forEach((l, i) => setTimeout(() => l.classList.add('lit'), i * 120)) });
   }
 
-  // Story right
   G.fromTo('.story__right', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
     scrollTrigger: { trigger: '.story__right', ...rOpts } });
 
-  // CTA block
   G.fromTo('.cta-block', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out',
     scrollTrigger: { trigger: '.cta-block', ...rOpts } });
 
-  // Contact channels
   G.utils.toArray('.ch').forEach((c, i) => {
     G.fromTo(c, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, delay: i * 0.1, ease: 'power3.out',
       scrollTrigger: { trigger: '.contact__chs', ...rOpts } });
   });
 
-  // FAQ list
   G.fromTo('.faq__list', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     scrollTrigger: { trigger: '.faq__list', ...rOpts } });
 
-  // Orb parallax
+  G.to('.hero__grid', { yPercent: 12, ease: 'none',
+    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } });
   G.to('.hero__orb--a', { yPercent: -20, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 } });
   G.to('.hero__orb--b', { yPercent: -12, ease: 'none',
@@ -220,19 +243,22 @@ function initFallbackReveals() {
    ═══════════════════════════════════════════════════════════ */
 function initMagnetic() {
   if (window.innerWidth < 860) return;
+
   document.querySelectorAll('.btn-solid, .btn-ghost, .nav__cta').forEach(el => {
-    el.addEventListener('mousemove', e => {
-      const r  = el.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width  / 2)) * 0.3;
-      const dy = (e.clientY - (r.top  + r.height / 2)) * 0.3;
-      el.style.transform = `translate(${dx}px,${dy}px)`;
+    const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power2.out' });
+    const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power2.out' });
+
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) * 0.22;
+      const dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+      xTo(dx);
+      yTo(dy);
     });
-    el.addEventListener('mouseleave', () => {
-      el.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
-      el.style.transform  = 'translate(0,0)';
-      setTimeout(() => el.style.transition = '', 500);
+
+    el.addEventListener('pointerleave', () => {
+      gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
     });
-    el.addEventListener('mouseenter', () => { el.style.transition = 'none'; });
   });
 }
 

@@ -11,6 +11,8 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.43.0"
+    "@studio-freight/lenis": "^1.0.42",
+    "@supabase/supabase-js": "^2.43.0",
+    "gsap": "^3.15.0"
   }
 }

@@ -39,7 +39,7 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="nav__cta">Start a project</a>
+    <a href="#contact" class="nav__cta btn--primary">Start a project</a>
     <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
@@ -71,19 +71,23 @@
     <p class="hero__sub">Websites. Automation. Invoicing. Admin panels.<br/>Built with strategy — not templates.</p>
     <div class="hero__btns">
       <a href="#work"    class="btn-ghost">View Work</a>
-      <a href="#contact" class="btn-solid">Book a Call</a>
+      <a href="#contact" class="btn--primary">Book a Call</a>
     </div>
   </div>
-  <div class="hero__foot" aria-hidden="true">
-    <div class="hero__scroll"><div class="sc-track"><div class="sc-thumb"></div></div><span>Scroll</span></div>
-    <div class="hero__nums">
-      <div class="h-num"><b data-count="25" class="counter">0</b><span>+ Projects</span></div>
-      <div class="h-sep"></div>
-      <div class="h-num"><b>4</b><span>Services</span></div>
-      <div class="h-sep"></div>
-      <div class="h-num"><b>100%</b><span>Custom</span></div>
-    </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="sc-track"><div class="sc-thumb"></div></div>
+    <span>Scroll</span>
   </div>
+
+  <div class="hero__stats" aria-hidden="true">
+    <div class="h-num"><b data-count="25" class="counter">0</b><span>+ Projects</span></div>
+    <div class="h-sep"></div>
+    <div class="h-num"><b>4</b><span>Services</span></div>
+    <div class="h-sep"></div>
+    <div class="h-num"><b>100%</b><span>Custom</span></div>
+  </div>
+
   <div class="ticker" aria-hidden="true">
     <div class="ticker__track">
       <span>Websites</span>
@@ -302,6 +306,8 @@
     </div>
   </div>
 </div>
+
+<div class="grain-overlay" aria-hidden="true"></div>
 
 <script type="module" src="js/main.js"></script>
 </body>
