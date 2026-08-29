@@ -130,7 +130,7 @@ a{color:inherit;text-decoration:none}
 
 /* MODAL */
 .modal-wrap{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
-.modal-bg{position:fixed;inset:0;background:rgba(3,5,14,0.88);backdrop-filter:blur(10px);cursor:pointer}
+.modal-bg{position:fixed;inset:0;background:rgba(3,5,14,0.88);cursor:pointer;backdrop-filter:none}
 .modal{position:relative;z-index:1;width:100%;max-width:640px;background:var(--bg1);border:1px solid var(--ln2);border-radius:20px;margin:auto}
 .modal-lg{max-width:840px}
 .modal-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 18px;border-bottom:1px solid var(--ln)}

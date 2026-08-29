@@ -111,20 +111,22 @@ function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
   lenis = new Lenis({
-    duration: 1.15,
+    duration: 1.05,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothTouch: false,
     wheelMultiplier: 1,
+    gestureOrientation: 'vertical',
   });
 
-  const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+  const raf = t => {
+    lenis.raf(t);
+    requestAnimationFrame(raf);
+  };
   requestAnimationFrame(raf);
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(time => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
   }
 }
 
@@ -134,8 +136,13 @@ function initLenis() {
 function initAnimations() {
   const G  = typeof gsap !== 'undefined' ? gsap : null;
   const ST = G && typeof ScrollTrigger !== 'undefined' ? ScrollTrigger : null;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
 
-  if (!G || !ST) { initFallbackReveals(); return; }
+  if (!G || !ST || reducedMotion || lowPower) {
+    initFallbackReveals();
+    return;
+  }
 
   G.registerPlugin(ST);
 
@@ -205,11 +212,11 @@ function initAnimations() {
   G.fromTo('.faq__list', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
     scrollTrigger: { trigger: '.faq__list', ...rOpts } });
 
-  G.to('.hero__grid', { yPercent: 12, ease: 'none',
+  G.to('.hero__grid', { yPercent: 6, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 } });
-  G.to('.hero__orb--a', { yPercent: -20, ease: 'none',
+  G.to('.hero__orb--a', { yPercent: -10, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 } });
-  G.to('.hero__orb--b', { yPercent: -12, ease: 'none',
+  G.to('.hero__orb--b', { yPercent: -8, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 } });
 }
 
